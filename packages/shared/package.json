@@ -5,5 +5,8 @@
   "exports": {
     "./routes": "./src/routes.js",
     "./chat-schema": "./src/chat-schema.js"
+  },
+  "dependencies": {
+    "zod": "^3.25.0"
   }
 }
