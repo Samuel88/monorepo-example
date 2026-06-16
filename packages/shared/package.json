@@ -1,0 +1,9 @@
+{
+  "name": "@myorg/shared",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./routes": "./src/routes.js",
+    "./chat-schema": "./src/chat-schema.js"
+  }
+}

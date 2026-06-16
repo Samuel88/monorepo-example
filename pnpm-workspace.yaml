@@ -1,0 +1,7 @@
+# Breve spiegazione:
+# Questo file dice a pnpm quali cartelle fanno parte della monorepo.
+# 'apps/*' contiene le app eseguibili, 'packages/*' le librerie condivise.
+
+packages:
+  - "apps/*"
+  - "packages/*"

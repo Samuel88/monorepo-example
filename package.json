@@ -1,0 +1,10 @@
+{
+  "name": "my-monorepo",
+  "private": true,
+  "scripts": {
+    "dev:client": "pnpm --filter @myorg/client dev",
+    "dev:server": "pnpm --filter @myorg/server dev",
+    "build:client": "pnpm --filter @myorg/client build",
+    "start:server": "pnpm --filter @myorg/server start"
+  }
+}
