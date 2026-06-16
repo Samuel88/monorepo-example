@@ -4,10 +4,10 @@
 // Modificare qui significa aggiornare entrambe le app con un solo commit.
 
 export const routeMap = {
-  home: "/",
-  profilo: "/profilo",
-  corsi: "/corsi",
-  contatti: "/contatti"
+  home:      { path: "/",          description: "pagina principale dell'app" },
+  profilo:   { path: "/profilo",   description: "profilo e dati dell'utente" },
+  corsi:     { path: "/corsi",     description: "elenco dei corsi disponibili" },
+  contatti:  { path: "/contatti",  description: "pagina di contatto" },
 };
 
 export const allowedRouteKeys = Object.keys(routeMap);

@@ -43,9 +43,9 @@ export default function HeaderChat() {
       if (
         data.action === "navigate" &&
         data.routeKey &&
-        routeMap[data.routeKey]
+        routeMap[data.routeKey]?.path
       ) {
-        navigate(routeMap[data.routeKey]);
+        navigate(routeMap[data.routeKey].path);
       }
     } catch (error) {
       setMessages((prev) => [
