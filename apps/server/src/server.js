@@ -25,6 +25,10 @@ app.post("/api/chat", async (req, res) => {
     ]
   });
 
+  aiResponse.messages.forEach((m, i) =>
+    console.log(i, m.constructor.name, m.usage_metadata)
+  );
+  
   const result = aiResponse.structuredResponse;
 
   res.json(result);
