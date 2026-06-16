@@ -4,49 +4,33 @@
 // Il campo 'action' dice al client cosa fare: rispondere o navigare.
 
 import express from "express";
-import { routeMap, allowedRouteKeys } from "@myorg/shared/routes";
-import { ChatResponseSchema } from "@myorg/shared/chat-schema";
+import genericAgent from "./ai/agents/generic.js";
+import { HumanMessage } from "langchain";
 
 const app = express();
+
 app.use(express.json());
 
-app.post("/api/chat", (req, res) => {
+app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
 
   if (!message || typeof message !== "string") {
     return res.status(400).json({ error: "Messaggio non valido" });
   }
 
-  const lowerMsg = message.toLowerCase();
 
-  // Controlla se il messaggio contiene una delle routeKey consentite
-  // In produzione qui ci sarebbe la chiamata al modello LLM
-  const matchedKey = allowedRouteKeys.find((key) => lowerMsg.includes(key));
+  const aiResponse = await genericAgent.invoke({
+    messages: [
+      new HumanMessage(message)
+    ]
+  });
 
-  let response;
+  const result = aiResponse.structuredResponse;
 
-  if (matchedKey) {
-    response = {
-      message: `Ti porto nella pagina "${matchedKey}".`,
-      action: "navigate",
-      routeKey: matchedKey
-    };
-  } else {
-    response = {
-      message: `Hai scritto: "${message}". Questa è una risposta simulata del server.`,
-      action: "reply",
-      routeKey: null
-    };
-  }
-
-  // Validazione con Zod prima di rispondere
-  const parsed = ChatResponseSchema.parse(response);
-
-  res.json(parsed);
+  res.json(result);
 });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server attivo su http://localhost:${PORT}`);
-  console.log("Route disponibili:", routeMap);
 });

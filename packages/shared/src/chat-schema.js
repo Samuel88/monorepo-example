@@ -6,10 +6,11 @@
 import { z } from "zod";
 
 export const ChatResponseSchema = z.object({
-  // Il testo da mostrare in chat all'utente
-  message: z.string(),
-  // 'reply' = risposta normale, 'navigate' = il modello vuole cambiare pagina
-  action: z.enum(["reply", "navigate"]),
-  // La chiave logica della route (null se action === 'reply')
-  routeKey: z.enum(["home", "profilo", "corsi", "contatti"]).nullable()
+    message: z.string()
+        .describe('Messaggio da mostrare nella chat'),
+    action: z.enum(["reply", "navigate"])
+        .describe('Azione da eseguire nel frontend'),
+    routeKey: z.enum(["home", "profilo", "corsi", "contatti"])
+        .nullable()
+        .describe('Chiave della pagina, oppure null se non serve navigare')
 });

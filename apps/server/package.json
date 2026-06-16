@@ -3,12 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "dev": "node --env-file=.env --watch src/server.js",
+    "start": "node --env-file=.env src/server.js"
   },
   "dependencies": {
+    "@langchain/anthropic": "^1.4.1",
     "@myorg/shared": "workspace:*",
     "express": "^5.0.0",
+    "langchain": "^1.4.5",
     "zod": "^4.4.3"
   }
 }
