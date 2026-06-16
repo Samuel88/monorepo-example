@@ -2,7 +2,7 @@
 
 Monorepo React + Express + Shared packages con **pnpm workspaces**.
 
-Contiene una chat con LLM nell'header che può triggherare redirect React Router.
+Contiene una chat con LLM nell'header che può triggerare redirect React Router. Il backend usa `@langchain/anthropic` con prompt caching configurato — vedi [promptCaching.md](promptCaching.md) per la guida all'ottimizzazione dei token.
 
 ## Struttura
 

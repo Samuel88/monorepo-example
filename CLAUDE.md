@@ -48,3 +48,9 @@ Esporta due entry point (definiti in `exports` nel suo `package.json`):
 - `@myorg/shared/chat-schema` — `ChatResponseSchema`: schema Zod della risposta del backend, importato dal server (per validare prima di rispondere) e disponibile al client per la tipizzazione.
 
 Aggiungere una nuova pagina richiede di aggiornare `routeMap` in `packages/shared/src/routes.js`, la `Route` in `App.jsx` e (se necessario) lo schema `routeKey` in `chat-schema.js`.
+
+## Ottimizzazione token
+
+Per le strategie di risparmio token (prompt caching, gestione history, Batch API) vedi [promptCaching.md](promptCaching.md).
+
+Il middleware `anthropicPromptCachingMiddleware` è già attivo in `apps/server/src/ai/agents/generic.js`. Si attiva automaticamente quando il system prompt supera le 2048 token (Haiku) o 1024 (Sonnet/Opus), oppure quando si passa la history multi-turno nelle richieste.
